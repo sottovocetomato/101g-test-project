@@ -1,20 +1,6 @@
 <template>
   <div class="main-wrap">
-    <el-row>
-      <el-col :span="6">
-        <el-date-picker
-          v-model="dateRange"
-          type="daterange"
-          range-separator="-"
-          value-format="YYYY-MM-DD"
-          start-placeholder="От"
-          end-placeholder="До"
-        />
-      </el-col>
-
-      <el-button @click="onFilter">Filter</el-button>
-    </el-row>
-
+    <BaseFilters :filters="filters" />
     <el-scrollbar>
       <el-table :data="transData">
         <el-table-column prop="id" label="Id" width="140" />
@@ -30,6 +16,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import transactions from '@/api/transactions'
+import BaseFilters, { FilterObj } from '@/components/base/BaseFilters.vue'
+
+const filters: FilterObj[] = [
+  {
+    type: 'dateRange',
+    rule: 'btw',
+    filterBy: 'date',
+  },
+  {
+    type: 'select',
+    rule: 'eq',
+    filterBy: 'type',
+    options: [
+      { label: 'expense', value: 'expense' },
+      { label: 'income', value: 'income' },
+    ],
+  },
+]
 
 const reqConfig = { _limit: 10 }
 const transData = ref(null)
