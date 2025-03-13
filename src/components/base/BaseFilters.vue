@@ -1,40 +1,68 @@
 <template>
-  <el-row>
-    <el-col
-      v-for="(filter, ind) in filters"
-      :key="`${filter.type}-${ind}`"
-      :span="filter?.span || 6"
-    >
-      <el-date-picker
-        v-if="filter?.type === 'dateRange'"
-        v-model="filtersModel[filter.name]"
-        type="daterange"
-        range-separator="-"
-        value-format="YYYY-MM-DD"
-        start-placeholder="От"
-        end-placeholder="До"
-        @change="(value) => composeFilter(filter, value)"
-      />
-      <el-select
-        v-if="filter.type === 'select'"
-        v-model="filtersModel[filter.name]"
-        :placeholder="filter?.placeholder || 'Выберите опцию'"
-        @change="(value) => composeFilter(filter, value)"
-      >
-        <el-option
-          v-for="item in filter.options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-col>
-    <el-button @click="onFilter">Filter</el-button>
-  </el-row>
+  <div class="filters-wrap">
+    <el-row>
+      <el-col :span="21">
+        <el-row>
+          <el-col
+            v-for="(filter, ind) in filters"
+            :key="`${filter.type}-${ind}`"
+            :span="filter?.span || 7"
+          >
+            <el-date-picker
+              v-if="filter.type === 'dateRange'"
+              v-model="filtersModel[filter.name]"
+              type="daterange"
+              range-separator="-"
+              value-format="YYYY-MM-DD"
+              start-placeholder="От"
+              end-placeholder="До"
+              @change="(value) => composeFilter(filter, value)"
+              class="w-4/5 mr-1"
+              size="large"
+            />
+            <el-select
+              v-if="filter.type === 'select'"
+              v-model="filtersModel[filter.name]"
+              :placeholder="filter?.placeholder || 'Выберите опцию'"
+              @change="(value) => composeFilter(filter, value)"
+              class="w-4/5 mr-1"
+              size="large"
+            >
+              <el-option
+                v-for="item in filter.options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+            <el-button
+              type="danger"
+              :icon="Close"
+              circle
+              @click="clearFilter(filter)"
+              size="small"
+            />
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :span="3">
+        <div class="filters-wrap-controls flex-row justify-end">
+          <el-button type="danger" size="large" @click="clearFilter()">Clear All</el-button>
+          <el-button type="primary" size="large" @click="onFilter">Filter</el-button>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { defineEmits, defineProps, ref } from 'vue'
+
+import { Close } from '@element-plus/icons-vue'
+
+const emit = defineEmits<{
+  filterAction: [assembledFilter: Record<string, string | number>]
+}>()
 
 export interface FilterObj {
   name: string
@@ -51,33 +79,34 @@ export interface FilterProps {
 }
 
 const { filters } = defineProps<FilterProps>()
-const loaded = ref(false)
 
 const filtersModel = ref({})
 
-const assembledFilter = ref({})
+let assembledFilter = {}
 
-function composeFilter(filter, value) {
-  console.log(value, 'value')
-  if (filter.rule.toLowerCase() === 'btw') {
-    assembledFilter.value[`${filter.filterBy}_gte`] = value[0]
-    assembledFilter.value[`${filter.filterBy}_lte`] = value[1]
+function composeFilter(filter: FilterObj, value: string | number | string[]) {
+  if (filter.rule.toLowerCase() === 'btw' && Array.isArray(value)) {
+    assembledFilter[`${filter.filterBy}_gte`] = value[0]
+    assembledFilter[`${filter.filterBy}_lte`] = value[1]
   }
   if (filter.rule.toLowerCase() === 'eq') {
-    assembledFilter.value[filter.filterBy] = value
+    assembledFilter[filter.filterBy] = value
   }
 }
-
-async function onFilter() {
-  console.log(dateRange.value, 'dateRange')
-  let conf = {
-    ...reqConfig,
-    date_gte: dateRange.value[0],
-    date_lte: dateRange.value[1],
-    _sort: 'date',
-    _order: 'asc',
+function clearFilter(filter?: FilterObj) {
+  if (!filter) {
+    assembledFilter = {}
   }
-  await getData(1, conf)
+  filtersModel.value[filter.name] = ''
+  if (filter.rule.toLowerCase() === 'btw') {
+    assembledFilter[`${filter.filterBy}_gte`] = undefined
+    assembledFilter[`${filter.filterBy}_lte`] = undefined
+  }
+  assembledFilter[filter.filterBy] = undefined
+  onFilter()
+}
+function onFilter() {
+  emit('filterAction', assembledFilter)
 }
 </script>
 

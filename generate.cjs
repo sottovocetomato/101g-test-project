@@ -11,7 +11,7 @@ function generateData(id) {
     "id": id + 1,
     "date": fakerRU.date.recent({ days: 10 }).toISOString().slice(0, 10).replace(/-/g, '-'),
     "type": type,
-    "amount": faker.finance.amount(),
+    "amount": +faker.finance.amount(),
     "description": fakerRU.finance.transactionDescription()
   }
 }
@@ -19,7 +19,7 @@ function generateData(id) {
 
 module.exports = () => {
   const data = { transactions: [] }
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 90; i++) {
     data.transactions.push(generateData(i))
   }
   return data

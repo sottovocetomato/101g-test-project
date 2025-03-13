@@ -33,3 +33,26 @@
 .justify-end {
   justify-content: flex-end;
 }
+.container-custom {
+  min-width: 1460px;
+}
+
+.w-1\/5 {
+  width: 20% !important;
+}
+.w-2\/5 {
+  width: 40% !important;
+}
+.w-3\/5 {
+  width: 60% !important;
+}
+.w-4\/5 {
+  width: 80% !important;
+}
+
+.mr-1 {
+  margin-right: calc(var(--spacer) / 5);
+}
+.ml-1 {
+  margin-left: calc(var(--spacer) / 5);
+}

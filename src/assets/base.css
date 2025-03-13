@@ -68,18 +68,34 @@ header {
   background-color: var(--el-color-primary-light-3);
   color: white;
 }
-
-footer {
-  color: white;
-  background-color: var(--el-color-info-dark-2);
+.filters-wrap {
+  margin-bottom: var(--spacer);
 }
-main {
+footer {
+  /*color: white;*/
+  background-color: var(--el-color-info-dark-2);
+  color: white;
+  p {
+    font-weight: 600;
+  }
+  a {
+    color: white;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+}
+
+main.el-main {
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
-.main-wrap {
-  max-width: 1460px;
+.transactions-wrap {
   margin: auto;
   position: relative;
+}
+.pagination {
+  margin-top: var(--spacer);
+}
+.transactions__table {
+  height: 70dvh;
 }
