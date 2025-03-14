@@ -16,7 +16,7 @@
               value-format="YYYY-MM-DD"
               start-placeholder="От"
               end-placeholder="До"
-              @change="(value) => composeFilter(filter, value)"
+              @change="composeFilter(filter, $event)"
               class="w-4/5 mr-1"
               size="large"
             />
@@ -24,7 +24,7 @@
               v-if="filter.type === 'select'"
               v-model="filtersModel[filter.name]"
               :placeholder="filter?.placeholder || 'Выберите опцию'"
-              @change="(value) => composeFilter(filter, value)"
+              @change="composeFilter(filter, $event)"
               class="w-4/5 mr-1"
               size="large"
             >
@@ -88,7 +88,7 @@ let assembledFilter: AssembledFilter = {}
 
 //Можно сделать фильтрацию сразу при выборе значения в фильтре или при очистке, но это не всегда удобно
 //для пользователя и создаст дополнительные запросы к серверу.
-function composeFilter(filter: FilterObj, value: string | number | string[]) {
+function composeFilter(filter: FilterObj, value: any) {
   if (filter.rule.toLowerCase() === 'btw' && Array.isArray(value)) {
     assembledFilter[`${filter.filterBy}_gte`] = value[0]
     assembledFilter[`${filter.filterBy}_lte`] = value[1]
@@ -105,6 +105,7 @@ function clearAllFilters() {
   onFilter()
 }
 function clearFilter(filter?: FilterObj) {
+  if (!filter) return
   filtersModel.value[filter?.name] = ''
   if (filter?.rule?.toLowerCase() === 'btw') {
     assembledFilter[`${filter.filterBy}_gte`] = undefined
