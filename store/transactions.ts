@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { Transaction } from '@/types'
+import type { Transaction } from '@/types'
 
 export const useTransactionsStore = defineStore('counter', () => {
-  const transactionsData = ref([])
+  const transactionsData = ref<Transaction[]>([])
   function setTransactions(data: Transaction[]) {
     if (!data) return
     transactionsData.value = data

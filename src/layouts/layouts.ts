@@ -1,5 +1,9 @@
 import DefaultLayout from './DefaultLayout.vue'
+import type { Component } from 'vue'
 
-export default {
+type Layouts = Record<string, Component>
+
+const layouts: Layouts = {
   DefaultLayout,
 }
+export default layouts

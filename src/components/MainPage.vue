@@ -28,7 +28,7 @@
         layout="prev, pager, next"
         :total="totalCount"
         v-model:current-page="currentPage"
-        @change="moveToPage"
+        @change="getData"
         class="justify-center"
       />
     </div>
@@ -38,10 +38,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import transactions from '@/api/transactions'
-import BaseFilters, { FilterObj } from '@/components/base/BaseFilters.vue'
+import BaseFilters from '@/components/base/BaseFilters.vue'
+import type { AssembledFilter } from '@/components/base/BaseFilters.vue'
+import type { FilterObj } from '@/components/base/BaseFilters.vue'
 import { currencyFormat } from '@/helpers/currencyFormat'
 import { useTransactionsStore } from '../../store/transactions'
 import { storeToRefs } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
 
 const store = useTransactionsStore()
 const { transactionsData } = storeToRefs(store)
@@ -92,11 +95,10 @@ async function getData(page?: number, config = {}) {
 
 //В компоненте BaseFilters собирается объект фильтра, который затем передаётся в запрос на сервер.
 //Объект обрабатывается axios и превращается в query параметры, необходимые для фильтрации
-//по правилам из документации json-server
-async function onFilter(assembledFilter: Record<string, string | number>) {
+//по правилам из документации json-server. Фильтры можно сочетать.
+async function onFilter(assembledFilter: AssembledFilter) {
   searchQuery = { ...searchQuery, ...assembledFilter }
-  currentPage.value = 1
-  await getData(1)
+  await getFilteredData()
 }
 
 //Сортировка использует встроенную в таблицу от ElementUI функцию сортировки и эвент sort-change.
@@ -105,12 +107,17 @@ async function onSort({ order, prop }: { order?: string; prop?: string } = {}) {
   if (!order || !prop) return
   order = order === 'descending' ? 'desc' : 'asc'
   searchQuery = { ...searchQuery, _sort: prop, _order: order }
-  currentPage.value = 1
-  await getData()
+  await getFilteredData()
 }
 
-async function moveToPage() {
-  await getData()
+//Если у нас первая страница, то напрямую вызываем фетч, если находимся на иной странице, то сбрасываем её на первую
+//и пагинатор вызовет фетч самостоятельно
+async function getFilteredData() {
+  if (currentPage.value === 1) {
+    await getData()
+  } else {
+    currentPage.value = 1
+  }
 }
 </script>
 

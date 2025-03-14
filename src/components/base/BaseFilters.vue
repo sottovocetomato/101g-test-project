@@ -47,7 +47,7 @@
       </el-col>
       <el-col :span="3">
         <div class="filters-wrap-controls flex-row justify-end">
-          <el-button type="danger" size="large" @click="clearFilter()">Clear All</el-button>
+          <el-button type="danger" size="large" @click="clearAllFilters">Clear All</el-button>
           <el-button type="primary" size="large" @click="onFilter">Filter</el-button>
         </div>
       </el-col>
@@ -60,8 +60,10 @@ import { defineEmits, defineProps, ref } from 'vue'
 
 import { Close } from '@element-plus/icons-vue'
 
+export type AssembledFilter = Record<string, string | number | undefined>
+
 const emit = defineEmits<{
-  filterAction: [assembledFilter: Record<string, string | number>]
+  filterAction: [assembledFilter: AssembledFilter]
 }>()
 
 export interface FilterObj {
@@ -80,9 +82,9 @@ export interface FilterProps {
 
 const { filters } = defineProps<FilterProps>()
 
-const filtersModel = ref({})
+const filtersModel = ref<Record<string, any>>({})
 
-let assembledFilter = {}
+let assembledFilter: AssembledFilter = {}
 
 //Можно сделать фильтрацию сразу при выборе значения в фильтре или при очистке, но это не всегда удобно
 //для пользователя и создаст дополнительные запросы к серверу.
@@ -91,22 +93,24 @@ function composeFilter(filter: FilterObj, value: string | number | string[]) {
     assembledFilter[`${filter.filterBy}_gte`] = value[0]
     assembledFilter[`${filter.filterBy}_lte`] = value[1]
   }
-  if (filter.rule.toLowerCase() === 'eq') {
+  if (filter.rule.toLowerCase() === 'eq' && !Array.isArray(value)) {
     assembledFilter[filter.filterBy] = value
   }
 }
-function clearFilter(filter?: FilterObj) {
-  if (!filter) {
-    filtersModel.value = {}
-    assembledFilter = {}
-  } else {
-    filtersModel.value[filter?.name] = ''
-    if (filter?.rule?.toLowerCase() === 'btw') {
-      assembledFilter[`${filter.filterBy}_gte`] = undefined
-      assembledFilter[`${filter.filterBy}_lte`] = undefined
-    }
-    assembledFilter[filter.filterBy] = undefined
+function clearAllFilters() {
+  filtersModel.value = {}
+  for (const key in assembledFilter) {
+    assembledFilter[key] = undefined
   }
+  onFilter()
+}
+function clearFilter(filter?: FilterObj) {
+  filtersModel.value[filter?.name] = ''
+  if (filter?.rule?.toLowerCase() === 'btw') {
+    assembledFilter[`${filter.filterBy}_gte`] = undefined
+    assembledFilter[`${filter.filterBy}_lte`] = undefined
+  }
+  assembledFilter[filter.filterBy] = undefined
 }
 function onFilter() {
   emit('filterAction', assembledFilter)

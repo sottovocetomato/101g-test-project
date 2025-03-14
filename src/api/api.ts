@@ -1,5 +1,7 @@
 import axios from 'axios'
-import type { CreateAxiosDefaults, AxiosRequestConfig } from 'axios'
+import type { CreateAxiosDefaults, AxiosRequestConfig, AxiosInstance } from 'axios'
+
+type RequestBody = Record<string, any>
 
 const options = {
   baseURL: 'http://localhost:4000/',
@@ -19,11 +21,11 @@ AxiosInstance.interceptors.response.use(
   }
 )
 
-const api = (axios) => ({
-  get: (url, config, body?) => axios.get(url, config, body),
-  post: (url, body, config?) => axios.post(url, body, config),
-  patch: (url, body, config?) => axios.patch(url, body, config),
-  delete: (url, config?) => axios.delete(url, config),
+const api = (axios: AxiosInstance) => ({
+  get: (url: string, config: AxiosRequestConfig, body?: RequestBody) => axios.get(url, config),
+  post: (url: string, body: RequestBody) => axios.post(url, body),
+  patch: (url: string, body: RequestBody) => axios.patch(url, body),
+  delete: (url: string) => axios.delete(url),
 })
 
 export default api(AxiosInstance)
