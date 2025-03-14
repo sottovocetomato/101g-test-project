@@ -1,7 +1,7 @@
 <template>
   <div class="transactions-wrap flex-col container-custom">
     <BaseFilters :filters="filters" @filterAction="onFilter" />
-    <div class="transactions__table-wrap">
+    <div class="transactions__table-wrap" v-loading="loading">
       <el-scrollbar>
         <el-table
           :data="transactionsData"
@@ -69,6 +69,7 @@ const filters: FilterObj[] = [
   },
 ]
 
+const loading = ref(false)
 const currentPage = ref(1)
 const totalCount = ref(0)
 let searchQuery = {}
@@ -84,13 +85,21 @@ onMounted(async () => {
 // const transData = ref(null)
 
 async function getData(page?: number, config = {}) {
-  const limit = { _limit: 10 }
-  const res = await transactions.getAll({
-    params: { _page: page || currentPage.value, ...limit, ...searchQuery, ...config },
-  })
-  // transData.value = res?.data
-  setTransactions(res?.data)
-  totalCount.value = isNaN(+res?.headers?.['x-total-count']) ? 0 : +res?.headers?.['x-total-count']
+  try {
+    loading.value = true
+    const limit = { _limit: 10 }
+    const res = await transactions.getAll({
+      params: { _page: page || currentPage.value, ...limit, ...searchQuery, ...config },
+    })
+    // transData.value = res?.data
+    setTransactions(res?.data)
+    totalCount.value = isNaN(+res?.headers?.['x-total-count'])
+      ? 0
+      : +res?.headers?.['x-total-count']
+    loading.value = false
+  } catch (e) {
+    throw new Error(`Error while fetching data: ${e}`)
+  }
 }
 
 //В компоненте BaseFilters собирается объект фильтра, который затем передаётся в запрос на сервер.
