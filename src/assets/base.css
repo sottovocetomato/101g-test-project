@@ -85,10 +85,6 @@ footer {
   }
 }
 
-main.el-main {
-  display: flex;
-  flex-direction: column;
-}
 .transactions-wrap {
   margin: auto;
   position: relative;
@@ -96,6 +92,9 @@ main.el-main {
 .pagination {
   margin-top: var(--spacer);
 }
-.transactions__table {
+.transactions__table-wrap {
   height: 70dvh;
+}
+.transactions__table {
+  min-width: 960px;
 }

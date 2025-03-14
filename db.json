@@ -1,16 +1,634 @@
 {
-  "transactions": [{
-    "id": 1,
-    "date": "2024-02-01",
-    "type": "income",
-    "amount": 15000,
-    "description": "Оплата за проект"
-  },
+  "transactions": [
+    {
+      "id": 1,
+      "date": "2025-03-11",
+      "type": "income",
+      "amount": 951.02,
+      "description": "You made a payment of HNL 46.97 at ГУП Кулагин using card ending in ****3296 from account ***3070."
+    },
     {
       "id": 2,
-      "date": "2024-02-02",
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 990.47,
+      "description": "deposit confirmed at ФГУП ГруппТорг for INR 894.73, card ending in ****9903 associated with account ***4990."
+    },
+    {
+      "id": 3,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 221.16,
+      "description": "A withdrawal for PHP 190.30 was made at ИП Людмила via card ending ****1748 on account ***7767."
+    },
+    {
+      "id": 4,
+      "date": "2025-03-12",
       "type": "expense",
-      "amount": 5000,
-      "description": "Оплата подрядчику"
-    }]
+      "amount": 684.06,
+      "description": "payment processed at ГУП ПетрозаводскСистемс for BBD 670.61, using card ending ****4794. Account: ***1628."
+    },
+    {
+      "id": 5,
+      "date": "2025-03-09",
+      "type": "income",
+      "amount": 208.8,
+      "description": "A deposit of FJD 377.64 occurred at ИП ДжейрахГруппРусСистемс using a card ending in ****1233 for account ***5300."
+    },
+    {
+      "id": 6,
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 70.45,
+      "description": "withdrawal confirmed at ОП КяхтаЛимитедПром for MZN 821.21, card ending in ****1838 associated with account ***3743."
+    },
+    {
+      "id": 7,
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 43.5,
+      "description": "Payment of SRD 911.83 for deposit at МУП ПромСнаб, processed with card ending ****0513 linked to account ***3111."
+    },
+    {
+      "id": 8,
+      "date": "2025-03-13",
+      "type": "expense",
+      "amount": 905.74,
+      "description": "deposit at ГУП Бобров with a card ending in ****8750 for HUF 780.76 from account ***9076."
+    },
+    {
+      "id": 9,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 334.94,
+      "description": "payment at ПАО ПсковСнабПром with a card ending in ****7747 for AFN 447.65 from account ***1956."
+    },
+    {
+      "id": 10,
+      "date": "2025-03-07",
+      "type": "income",
+      "amount": 651.65,
+      "description": "Your payment of RUB 79.58 at ФГУП СнабПромПром was successful. Charged via card ****3034 to account ***1225."
+    },
+    {
+      "id": 11,
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 877.2,
+      "description": "Transaction alert: withdrawal at ТСЖ Флорентин using card ending ****0003 for an amount of CDF 639.34 on account ***9952."
+    },
+    {
+      "id": 12,
+      "date": "2025-03-14",
+      "type": "expense",
+      "amount": 382.2,
+      "description": "withdrawal of DJF 7.85 at ФГУП СистемсСистемс charged to account ending in 2168 using card ending in ****7606."
+    },
+    {
+      "id": 13,
+      "date": "2025-03-08",
+      "type": "income",
+      "amount": 711.59,
+      "description": "You made a payment of STN 915.95 at ОАО Ефимов using card ending in ****2389 from account ***7757."
+    },
+    {
+      "id": 14,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 567.41,
+      "description": "payment at МУП БологоеСнабТрейд with a card ending in ****9335 for ALL 577.66 from account ***6150."
+    },
+    {
+      "id": 15,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 258.33,
+      "description": "A invoice of JOD 863.96 occurred at ЗАО РусРусСнаб using a card ending in ****4116 for account ***9900."
+    },
+    {
+      "id": 16,
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 940.51,
+      "description": "withdrawal confirmed at ИП ТернейСбытЛимитедСистемс for LSL 810.61, card ending in ****3154 associated with account ***7475."
+    },
+    {
+      "id": 17,
+      "date": "2025-03-11",
+      "type": "income",
+      "amount": 156.18,
+      "description": "Your deposit of TJS 53.62 at ООО НаходкаСбыт was successful. Charged via card ****4010 to account ***6857."
+    },
+    {
+      "id": 18,
+      "date": "2025-03-04",
+      "type": "expense",
+      "amount": 626.42,
+      "description": "A invoice for EUR 808.45 was made at AO Ярополк via card ending ****6250 on account ***2386."
+    },
+    {
+      "id": 19,
+      "date": "2025-03-12",
+      "type": "income",
+      "amount": 5.27,
+      "description": "Payment of NAD 239.54 for payment at ПАО Оксана, processed with card ending ****5723 linked to account ***8872."
+    },
+    {
+      "id": 20,
+      "date": "2025-03-09",
+      "type": "expense",
+      "amount": 405.13,
+      "description": "invoice processed at ГУП МирныйПром for AWG 532.36, using card ending ****9516. Account: ***5241."
+    },
+    {
+      "id": 21,
+      "date": "2025-03-13",
+      "type": "expense",
+      "amount": 86.69,
+      "description": "A payment for LAK 486.07 was made at ФГУП Фомичев via card ending ****1118 on account ***4473."
+    },
+    {
+      "id": 22,
+      "date": "2025-03-09",
+      "type": "income",
+      "amount": 999.73,
+      "description": "A withdrawal for XCD 147.06 was made at ТСЖ ХабаровскСнаб via card ending ****9741 on account ***4903."
+    },
+    {
+      "id": 23,
+      "date": "2025-03-13",
+      "type": "income",
+      "amount": 187.49,
+      "description": "payment of LYD 698.37 at НКО Раиса charged to account ending in 5768 using card ending in ****6599."
+    },
+    {
+      "id": 24,
+      "date": "2025-03-09",
+      "type": "income",
+      "amount": 624.76,
+      "description": "invoice transaction at ФГУП ТоргСбыт using card ending with ****9629 for LSL 318.69 in account ***7976."
+    },
+    {
+      "id": 25,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 970.05,
+      "description": "payment of TWD 241.77 at AO Антонин charged to account ending in 3875 using card ending in ****6566."
+    },
+    {
+      "id": 26,
+      "date": "2025-03-05",
+      "type": "expense",
+      "amount": 577.27,
+      "description": "Your deposit of QAR 124.71 at ОАО Александра was successful. Charged via card ****1191 to account ***2638."
+    },
+    {
+      "id": 27,
+      "date": "2025-03-08",
+      "type": "income",
+      "amount": 29.87,
+      "description": "invoice at ОАО ЧайковскийТрейд with a card ending in ****6270 for GIP 935.53 from account ***5444."
+    },
+    {
+      "id": 28,
+      "date": "2025-03-09",
+      "type": "income",
+      "amount": 910.63,
+      "description": "A invoice for ZMW 245.50 was made at ОАО Милий via card ending ****1019 on account ***1090."
+    },
+    {
+      "id": 29,
+      "date": "2025-03-05",
+      "type": "expense",
+      "amount": 602.99,
+      "description": "Payment of BYN 991.19 for invoice at ГУП ИнкорпорэйтедСистемсИнкорпорэйтед, processed with card ending ****9127 linked to account ***9748."
+    },
+    {
+      "id": 30,
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 260.06,
+      "description": "withdrawal confirmed at ИП ТомскПромЛимитедИнкорпорэйтед for RSD 855.07, card ending in ****2136 associated with account ***8485."
+    },
+    {
+      "id": 31,
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 690.75,
+      "description": "Payment of SOS 645.81 for deposit at AO Кирово-ЧепецкТрейд, processed with card ending ****6738 linked to account ***2931."
+    },
+    {
+      "id": 32,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 438.78,
+      "description": "payment confirmed at ПАО НарымСнаб for PKR 602.03, card ending in ****3362 associated with account ***0428."
+    },
+    {
+      "id": 33,
+      "date": "2025-03-14",
+      "type": "expense",
+      "amount": 233.07,
+      "description": "A payment of XPF 612.61 occurred at ЗАО РусСнаб using a card ending in ****2756 for account ***0395."
+    },
+    {
+      "id": 34,
+      "date": "2025-03-09",
+      "type": "income",
+      "amount": 536.45,
+      "description": "payment confirmed at МУП РусПромРус for TTD 645.47, card ending in ****2292 associated with account ***0608."
+    },
+    {
+      "id": 35,
+      "date": "2025-03-05",
+      "type": "expense",
+      "amount": 414.44,
+      "description": "A deposit for TWD 18.77 was made at ГУП СнабЛимитед via card ending ****3401 on account ***7868."
+    },
+    {
+      "id": 36,
+      "date": "2025-03-14",
+      "type": "income",
+      "amount": 62.87,
+      "description": "invoice confirmed at НКО Егор for KYD 875.49, card ending in ****3369 associated with account ***6678."
+    },
+    {
+      "id": 37,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 918.28,
+      "description": "A payment for SDG 480.81 was made at ТСЖ ЛимитедГрупп via card ending ****5139 on account ***4850."
+    },
+    {
+      "id": 38,
+      "date": "2025-03-12",
+      "type": "income",
+      "amount": 160.69,
+      "description": "Payment of PHP 729.28 for invoice at ИП ИвдельТрейд, processed with card ending ****6778 linked to account ***0564."
+    },
+    {
+      "id": 39,
+      "date": "2025-03-11",
+      "type": "income",
+      "amount": 423.89,
+      "description": "Your payment of MMK 801.76 at ГУП ГруппТорг was successful. Charged via card ****8601 to account ***1806."
+    },
+    {
+      "id": 40,
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 879.54,
+      "description": "You made a deposit of UAH 365.00 at ООО Усть-ОрдынскийСнаб using card ending in ****8066 from account ***1748."
+    },
+    {
+      "id": 41,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 815.43,
+      "description": "withdrawal of AMD 985.26 at AO МожгаСистемсТрейд charged to account ending in 2991 using card ending in ****0903."
+    },
+    {
+      "id": 42,
+      "date": "2025-03-05",
+      "type": "expense",
+      "amount": 636.17,
+      "description": "A deposit for SDG 827.81 was made at НКО Елена via card ending ****7253 on account ***2743."
+    },
+    {
+      "id": 43,
+      "date": "2025-03-08",
+      "type": "income",
+      "amount": 772.59,
+      "description": "Payment of RSD 678.20 for invoice at AO Павловский ПосадПром, processed with card ending ****6133 linked to account ***2165."
+    },
+    {
+      "id": 44,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 22.28,
+      "description": "payment at ТСЖ ДербентТоргЛимитедСбыт with a card ending in ****4692 for GIP 2.90 from account ***7109."
+    },
+    {
+      "id": 45,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 155.89,
+      "description": "Payment of TND 54.83 for withdrawal at ФГУП Дмитриев, processed with card ending ****5550 linked to account ***0316."
+    },
+    {
+      "id": 46,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 628.29,
+      "description": "A invoice of FJD 131.05 occurred at ФГУП Горбунов using a card ending in ****1913 for account ***2796."
+    },
+    {
+      "id": 47,
+      "date": "2025-03-07",
+      "type": "income",
+      "amount": 52.99,
+      "description": "You made a payment of MXN 391.45 at AO ТоргРус using card ending in ****1681 from account ***4584."
+    },
+    {
+      "id": 48,
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 549.02,
+      "description": "withdrawal processed at ЗАО СистемсСнаб for NPR 244.97, using card ending ****7333. Account: ***5538."
+    },
+    {
+      "id": 49,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 744.31,
+      "description": "A invoice for XOF 574.88 was made at ФГУП Алла via card ending ****7988 on account ***8638."
+    },
+    {
+      "id": 50,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 22.54,
+      "description": "deposit transaction at AO Нина using card ending with ****0986 for BAM 424.56 in account ***6654."
+    },
+    {
+      "id": 51,
+      "date": "2025-03-05",
+      "type": "expense",
+      "amount": 594.8,
+      "description": "withdrawal processed at ОП Бронислав for PKR 149.37, using card ending ****9278. Account: ***0209."
+    },
+    {
+      "id": 52,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 518.99,
+      "description": "deposit at ОП Исаков with a card ending in ****2168 for MDL 477.01 from account ***4340."
+    },
+    {
+      "id": 53,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 691.91,
+      "description": "A deposit of UYU 677.54 occurred at МУП ПечораСбытПром using a card ending in ****4680 for account ***4912."
+    },
+    {
+      "id": 54,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 589.41,
+      "description": "payment confirmed at ИП ТоргГруппИнкорпорэйтед for DKK 356.97, card ending in ****0335 associated with account ***6282."
+    },
+    {
+      "id": 55,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 495.02,
+      "description": "You made a withdrawal of BBD 546.73 at ГУП ПромПром using card ending in ****6320 from account ***4741."
+    },
+    {
+      "id": 56,
+      "date": "2025-03-06",
+      "type": "expense",
+      "amount": 882.34,
+      "description": "Transaction alert: withdrawal at МУП Сосьва (Хант.)Трейд using card ending ****0351 for an amount of PEN 37.01 on account ***9274."
+    },
+    {
+      "id": 57,
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 893.5,
+      "description": "invoice at НКО Волков with a card ending in ****1338 for TJS 284.78 from account ***0143."
+    },
+    {
+      "id": 58,
+      "date": "2025-03-14",
+      "type": "income",
+      "amount": 43.11,
+      "description": "Payment of DZD 819.92 for withdrawal at ООО Евдокия, processed with card ending ****5756 linked to account ***0568."
+    },
+    {
+      "id": 59,
+      "date": "2025-03-05",
+      "type": "income",
+      "amount": 373.28,
+      "description": "Transaction alert: withdrawal at ГУП Евфросиния using card ending ****5067 for an amount of UAH 951.20 on account ***7672."
+    },
+    {
+      "id": 60,
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 670.87,
+      "description": "Transaction alert: payment at ПАО ИнтаТрейдЛимитед using card ending ****9913 for an amount of MWK 998.05 on account ***1490."
+    },
+    {
+      "id": 61,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 840.68,
+      "description": "You made a payment of ERN 806.33 at ПАО Гремислав using card ending in ****1017 from account ***5107."
+    },
+    {
+      "id": 62,
+      "date": "2025-03-13",
+      "type": "income",
+      "amount": 187.99,
+      "description": "You made a invoice of SRD 831.80 at ЗАО ВоронежТорг using card ending in ****9981 from account ***4197."
+    },
+    {
+      "id": 63,
+      "date": "2025-03-04",
+      "type": "income",
+      "amount": 165.19,
+      "description": "Payment of GTQ 734.77 for payment at ОП ЛимитедТрейд, processed with card ending ****4971 linked to account ***0280."
+    },
+    {
+      "id": 64,
+      "date": "2025-03-07",
+      "type": "income",
+      "amount": 960.05,
+      "description": "deposit of CDF 136.09 at ОП РусСбыт charged to account ending in 5305 using card ending in ****7438."
+    },
+    {
+      "id": 65,
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 239.66,
+      "description": "withdrawal of NGN 477.24 at ОП Мартьян charged to account ending in 2383 using card ending in ****2022."
+    },
+    {
+      "id": 66,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 392.9,
+      "description": "Your withdrawal of LAK 803.84 at МУП ТоргСистемс was successful. Charged via card ****0710 to account ***3536."
+    },
+    {
+      "id": 67,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 314.01,
+      "description": "A invoice of ZWL 881.11 occurred at ТСЖ УэленРус using a card ending in ****3137 for account ***5525."
+    },
+    {
+      "id": 68,
+      "date": "2025-03-12",
+      "type": "income",
+      "amount": 186.94,
+      "description": "withdrawal at ОАО МелеузТорг with a card ending in ****1962 for PAB 721.83 from account ***4845."
+    },
+    {
+      "id": 69,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 594.81,
+      "description": "deposit processed at ООО ЧегемРус for UZS 588.30, using card ending ****5898. Account: ***6665."
+    },
+    {
+      "id": 70,
+      "date": "2025-03-11",
+      "type": "expense",
+      "amount": 111.26,
+      "description": "You made a deposit of BSD 299.88 at ЗАО ЛимитедСбытТрейд using card ending in ****4468 from account ***8170."
+    },
+    {
+      "id": 71,
+      "date": "2025-03-09",
+      "type": "expense",
+      "amount": 307.32,
+      "description": "A deposit for PYG 446.12 was made at ОАО Щербаков via card ending ****4915 on account ***2003."
+    },
+    {
+      "id": 72,
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 842.8,
+      "description": "A deposit of SHP 820.46 occurred at ОАО НефтекамскЛимитед using a card ending in ****2886 for account ***0614."
+    },
+    {
+      "id": 73,
+      "date": "2025-03-05",
+      "type": "income",
+      "amount": 578.16,
+      "description": "Transaction alert: payment at НКО Евдокия using card ending ****7378 for an amount of PKR 989.68 on account ***7405."
+    },
+    {
+      "id": 74,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 33.37,
+      "description": "Payment of PGK 677.62 for payment at ГУП Рубен, processed with card ending ****0298 linked to account ***5584."
+    },
+    {
+      "id": 75,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 958.37,
+      "description": "Transaction alert: payment at AO Всемил using card ending ****7380 for an amount of ISK 717.64 on account ***1830."
+    },
+    {
+      "id": 76,
+      "date": "2025-03-12",
+      "type": "expense",
+      "amount": 444.95,
+      "description": "You made a payment of RWF 584.41 at ИП Чеслав using card ending in ****7257 from account ***3454."
+    },
+    {
+      "id": 77,
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 755.93,
+      "description": "Transaction alert: deposit at ТСЖ Ершов using card ending ****9897 for an amount of KYD 602.24 on account ***6144."
+    },
+    {
+      "id": 78,
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 125.05,
+      "description": "payment transaction at ТСЖ РусПромЛимитед using card ending with ****1447 for BSD 207.74 in account ***8992."
+    },
+    {
+      "id": 79,
+      "date": "2025-03-06",
+      "type": "expense",
+      "amount": 209.47,
+      "description": "invoice processed at ИП МайкопЛимитед for CUP 523.55, using card ending ****7406. Account: ***0613."
+    },
+    {
+      "id": 80,
+      "date": "2025-03-08",
+      "type": "income",
+      "amount": 290.38,
+      "description": "withdrawal confirmed at ПАО РусПромГрупп for KMF 858.67, card ending in ****5007 associated with account ***1009."
+    },
+    {
+      "id": 81,
+      "date": "2025-03-10",
+      "type": "expense",
+      "amount": 668.96,
+      "description": "deposit transaction at ООО Виноградов using card ending with ****7487 for ILS 765.40 in account ***0171."
+    },
+    {
+      "id": 82,
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 202.67,
+      "description": "withdrawal confirmed at AO Ираида for LSL 327.17, card ending in ****7831 associated with account ***4438."
+    },
+    {
+      "id": 83,
+      "date": "2025-03-10",
+      "type": "income",
+      "amount": 232.15,
+      "description": "A payment of MNT 894.60 occurred at AO Моисей using a card ending in ****1339 for account ***6692."
+    },
+    {
+      "id": 84,
+      "date": "2025-03-08",
+      "type": "expense",
+      "amount": 437.4,
+      "description": "Payment of EUR 543.76 for payment at ИП Артем, processed with card ending ****1589 linked to account ***3257."
+    },
+    {
+      "id": 85,
+      "date": "2025-03-12",
+      "type": "income",
+      "amount": 791.99,
+      "description": "invoice of MKD 180.58 at ОП Капустин charged to account ending in 6431 using card ending in ****4512."
+    },
+    {
+      "id": 86,
+      "date": "2025-03-13",
+      "type": "expense",
+      "amount": 524.41,
+      "description": "A payment of GIP 368.10 occurred at ПАО КостомукшаТрейдТорг using a card ending in ****1664 for account ***8521."
+    },
+    {
+      "id": 87,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 320.67,
+      "description": "deposit transaction at ГУП СбытРусТорг using card ending with ****7252 for KZT 134.41 in account ***9560."
+    },
+    {
+      "id": 88,
+      "date": "2025-03-07",
+      "type": "expense",
+      "amount": 932.88,
+      "description": "deposit transaction at ЗАО ВалдайРусСбытСбыт using card ending with ****9483 for SZL 981.80 in account ***4603."
+    },
+    {
+      "id": 89,
+      "date": "2025-03-08",
+      "type": "income",
+      "amount": 359.99,
+      "description": "deposit confirmed at ГУП Меркушев for MAD 568.23, card ending in ****6207 associated with account ***7025."
+    },
+    {
+      "id": 90,
+      "date": "2025-03-06",
+      "type": "income",
+      "amount": 604.19,
+      "description": "Transaction alert: withdrawal at ГУП Пимен using card ending ****1093 for an amount of XOF 22.28 on account ***4933."
+    }
+  ]
 }

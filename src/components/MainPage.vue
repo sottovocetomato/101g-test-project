@@ -1,13 +1,23 @@
 <template>
   <div class="transactions-wrap flex-col container-custom">
     <BaseFilters :filters="filters" @filterAction="onFilter" />
-    <div class="transactions__table flex-col justify-between">
+    <div class="transactions__table-wrap">
       <el-scrollbar>
-        <el-table :data="transData" @sort-change="onSort" stripe border>
+        <el-table
+          :data="transactionsData"
+          @sort-change="onSort"
+          stripe
+          border
+          class="transactions__table"
+        >
           <el-table-column prop="id" label="Id" width="140" />
           <el-table-column prop="date" label="Date" width="160" sortable="custom" />
           <el-table-column prop="type" label="Type" width="140" />
-          <el-table-column prop="amount" label="Amount" sortable="custom" width="250" />
+          <el-table-column prop="amount" label="Amount" sortable="custom" width="250">
+            <template #default="scope">
+              <span style="margin-left: 10px">{{ currencyFormat(scope.row.amount) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="description" label="Description" width="fit" />
         </el-table>
       </el-scrollbar>
@@ -17,6 +27,7 @@
       <el-pagination
         layout="prev, pager, next"
         :total="totalCount"
+        v-model:current-page="currentPage"
         @change="moveToPage"
         class="justify-center"
       />
@@ -25,9 +36,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import transactions from '@/api/transactions'
 import BaseFilters, { FilterObj } from '@/components/base/BaseFilters.vue'
+import { currencyFormat } from '@/helpers/currencyFormat'
+import { useTransactionsStore } from '../../store/transactions'
+import { storeToRefs } from 'pinia'
+
+const store = useTransactionsStore()
+const { transactionsData } = storeToRefs(store)
+const { setTransactions } = store
 
 const filters: FilterObj[] = [
   {
@@ -51,33 +69,49 @@ const filters: FilterObj[] = [
 const currentPage = ref(1)
 const totalCount = ref(0)
 let searchQuery = {}
-const transData = ref(null)
 
-async function getData(page = 1, config = {}) {
+onMounted(async () => {
+  await getData()
+})
+
+//В данном случае не вижу смысла использовать стейт менеджер, так как наши данные используются только на этой странице.
+//Я бы сохранил данные в локальной переменной transData и передал бы её в таблицу.
+//Но представим, что у нас есть еще страница, которая использует эти данные, и нам нужно хранить их в сторе.
+
+// const transData = ref(null)
+
+async function getData(page?: number, config = {}) {
   const limit = { _limit: 10 }
   const res = await transactions.getAll({
-    params: { _page: currentPage.value, ...limit, ...searchQuery, ...config },
+    params: { _page: page || currentPage.value, ...limit, ...searchQuery, ...config },
   })
-  transData.value = res?.data
+  // transData.value = res?.data
+  setTransactions(res?.data)
   totalCount.value = isNaN(+res?.headers?.['x-total-count']) ? 0 : +res?.headers?.['x-total-count']
 }
-async function onFilter(assembledFilter) {
-  searchQuery = assembledFilter
+
+//В компоненте BaseFilters собирается объект фильтра, который затем передаётся в запрос на сервер.
+//Объект обрабатывается axios и превращается в query параметры, необходимые для фильтрации
+//по правилам из документации json-server
+async function onFilter(assembledFilter: Record<string, string | number>) {
+  searchQuery = { ...searchQuery, ...assembledFilter }
+  currentPage.value = 1
   await getData(1)
 }
+
+//Сортировка использует встроенную в таблицу от ElementUI функцию сортировки и эвент sort-change.
+//Получаем данные о сортировке в эвенте и отправляем запрос на сервер.
 async function onSort({ order, prop }: { order?: string; prop?: string } = {}) {
   if (!order || !prop) return
   order = order === 'descending' ? 'desc' : 'asc'
-  console.log(order)
   searchQuery = { ...searchQuery, _sort: prop, _order: order }
-  await getData(1, searchQuery)
+  currentPage.value = 1
+  await getData()
 }
 
-async function moveToPage(page) {
-  currentPage.value = page
-  await getData(page)
+async function moveToPage() {
+  await getData()
 }
-await getData(currentPage.value)
 </script>
 
 <style scoped></style>

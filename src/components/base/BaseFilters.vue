@@ -84,6 +84,8 @@ const filtersModel = ref({})
 
 let assembledFilter = {}
 
+//Можно сделать фильтрацию сразу при выборе значения в фильтре или при очистке, но это не всегда удобно
+//для пользователя и создаст дополнительные запросы к серверу.
 function composeFilter(filter: FilterObj, value: string | number | string[]) {
   if (filter.rule.toLowerCase() === 'btw' && Array.isArray(value)) {
     assembledFilter[`${filter.filterBy}_gte`] = value[0]
@@ -95,15 +97,16 @@ function composeFilter(filter: FilterObj, value: string | number | string[]) {
 }
 function clearFilter(filter?: FilterObj) {
   if (!filter) {
+    filtersModel.value = {}
     assembledFilter = {}
+  } else {
+    filtersModel.value[filter?.name] = ''
+    if (filter?.rule?.toLowerCase() === 'btw') {
+      assembledFilter[`${filter.filterBy}_gte`] = undefined
+      assembledFilter[`${filter.filterBy}_lte`] = undefined
+    }
+    assembledFilter[filter.filterBy] = undefined
   }
-  filtersModel.value[filter.name] = ''
-  if (filter.rule.toLowerCase() === 'btw') {
-    assembledFilter[`${filter.filterBy}_gte`] = undefined
-    assembledFilter[`${filter.filterBy}_lte`] = undefined
-  }
-  assembledFilter[filter.filterBy] = undefined
-  onFilter()
 }
 function onFilter() {
   emit('filterAction', assembledFilter)
